@@ -1,19 +1,25 @@
-function getElementWidth(content, padding, border) {
-  return !isNaN(Number.parseFloat(content)) &&
-    !isNaN(Number.parseFloat(padding)) &&
-    !isNaN(Number.parseFloat(border))
-    ? Number.parseFloat(content) +
-        Number.parseFloat(padding) * 2 +
-        Number.parseFloat(border) * 2
-    : "Wrong parameters";
-}
+// Задача 3. Профіль гравця
 
-let resultText = "";
+const profile = {
+  username: "Jacob",
+  playTime: 300,
+  changeUsername(newName) {
+    this.username = newName;
+  },
+  updatePlayTime(hours) {
+    if (!isNaN(hours)) {
+      this.playTime += hours;
+    }
+  },
+  getInfo() {
+    return `${this.username} has ${this.playTime} active hours!`;
+  },
+};
 
-resultText += `<li>${getElementWidth("50px", "8px", "4px")}</li>`;
-resultText += `<li>${getElementWidth("60px", "12px", "8.5px")}</li>`;
-resultText += `<li>${getElementWidth("200px", "0px", "0px")}</li>`;
+console.log(profile.getInfo()); // "Jacob has 300 active hours!"
 
-console.log(getElementWidth("50px", "8px", "4px"));
-console.log(getElementWidth("60px", "12px", "8.5px"));
-console.log(getElementWidth("200px", "0px", "0px"));
+profile.changeUsername("Marco");
+console.log(profile.getInfo()); // "Marco has 300 active hours!"
+
+profile.updatePlayTime(20);
+console.log(profile.getInfo()); // "Marco has 320 active hours!"

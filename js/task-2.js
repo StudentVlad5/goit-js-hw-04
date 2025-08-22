@@ -1,17 +1,37 @@
-function getShippingMessage(country, price, deliveryFee) {
-  return country.length > 0 &&
-    !isNaN(Number(price)) &&
-    !isNaN(Number(deliveryFee))
-    ? `Shipping to ${country} will cost ${price + deliveryFee} credits`
-    : "Wrong parameters";
+// Задача 2. Розрахунок калорій
+
+function calcAverageCalories(days) {
+  if (days.length === 0) return 0;
+
+  const total = days.reduce((a, b) => {
+    return !isNaN(b.calories) ? a + b.calories : a;
+  }, 0);
+
+  return total / days.length;
 }
 
-let resultText = "";
+console.log(
+  calcAverageCalories([
+    { day: "monday", calories: 3010 },
+    { day: "tuesday", calories: 3200 },
+    { day: "wednesday", calories: 3120 },
+    { day: "thursday", calories: 2900 },
+    { day: "friday", calories: 3450 },
+    { day: "saturday", calories: 3280 },
+    { day: "sunday", calories: 3300 },
+  ])
+); // 3180
 
-resultText += `<li>${getShippingMessage("Australia", 120, 50)}</li>`;
-resultText += `<li>${getShippingMessage("Germany", 80, 20)}</li>`;
-resultText += `<li>${getShippingMessage("Sweden", 100, 20)}</li>`;
+console.log(
+  calcAverageCalories([
+    { day: "monday", calories: 2040 },
+    { day: "tuesday", calories: 2270 },
+    { day: "wednesday", calories: 2420 },
+    { day: "thursday", calories: 1900 },
+    { day: "friday", calories: 2370 },
+    { day: "saturday", calories: 2280 },
+    { day: "sunday", calories: 2610 },
+  ])
+); // 2270
 
-console.log(getShippingMessage("Australia", 120, 50));
-console.log(getShippingMessage("Germany", 80, 20));
-console.log(getShippingMessage("Sweden", 100, 20));
+console.log(calcAverageCalories([])); // 0
